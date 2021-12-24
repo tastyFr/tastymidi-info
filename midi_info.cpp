@@ -147,8 +147,15 @@ void MidiInfo::setBpmText() noexcept
     {
         const auto minmax = std::minmax_element(m_bpms.begin(), m_bpms.end());
 
-        temp = std::to_string(*minmax.first) + "-" +
-               std::to_string(*minmax.second);
+        if(*minmax.first == *minmax.second)
+        {
+            temp = std::to_string(*minmax.first);
+        }
+        else
+        {
+            temp = std::to_string(*minmax.first) + "-" +
+                   std::to_string(*minmax.second);
+        }
 
         if(std::adjacent_find(m_bpms.begin(), m_bpms.end()) != m_bpms.end())
         {
