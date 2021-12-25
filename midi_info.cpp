@@ -94,27 +94,28 @@ void MidiInfo::setTrackText() noexcept
     {
         for(int i{0}; i < m_midiFile.getTrackCount(); ++i)
         {
-            if(m_midiFile.getEventCount(i) == 0)
+            bool isEmpty{true};
+
+            for(int j{0}; j < m_midiFile.getEventCount(i); ++j)
+            {
+                MidiEvent event{m_midiFile.getEvent(i, j)};
+
+                if(event.isTempo())
+                {
+                    m_bpms.push_back(
+                        static_cast<uint16_t>(event.getTempoBPM()));
+                }
+
+                if(event.isNoteOn())
+                {
+                    ++m_totalNotes;
+                    isEmpty = false;
+                }
+            }
+
+            if(isEmpty)
             {
                 ++m_emptyTracksCount;
-            }
-            else
-            {
-                for(int j{0}; j < m_midiFile.getEventCount(i); ++j)
-                {
-                    MidiEvent event{m_midiFile.getEvent(i, j)};
-
-                    if(event.isTempo())
-                    {
-                        m_bpms.push_back(
-                            static_cast<uint16_t>(event.getTempoBPM()));
-                    }
-
-                    if(event.isNoteOn())
-                    {
-                        ++m_totalNotes;
-                    }
-                }
             }
         }
 
