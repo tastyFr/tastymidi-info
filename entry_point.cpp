@@ -1,15 +1,15 @@
 #include "midi_info.hpp"
 #include <iostream>
 
-int main(int argc, char* argv[])
+auto main(int argc, char* argv[]) -> int
 {
-    MidiInfo midiInfo;
     if(argc > 2)
     {
         std::cout << "Usage: midi_info <midi_file>" << std::endl;
     }
     else if(argc == 2)
     {
+        MidiInfo midiInfo;
         if(midiInfo.readMidiFile(argv[1]))
         {
             midiInfo.setTrackText();
@@ -32,6 +32,7 @@ int main(int argc, char* argv[])
             std::getline(std::cin, filename);
         }
 
+        MidiInfo midiInfo;
         if(midiInfo.readMidiFile(filename))
         {
             midiInfo.setTrackText();
