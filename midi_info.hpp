@@ -2,7 +2,7 @@
 #define MIDI_INFO_HPP
 
 #include "midi/MidiFile.h"
-#include <stdint.h>
+#include <cstdint>
 #include <string>
 #include <utility>
 #include <vector>
