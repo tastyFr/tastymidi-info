@@ -1,12 +1,13 @@
 #ifndef MIDI_INFO_HPP
 #define MIDI_INFO_HPP
 
-#include "midi/MidiEvent.h"
 #include "midi/MidiFile.h"
+#include <stdint.h>
 #include <string>
+#include <utility>
 #include <vector>
 
-using entry = std::pair<unsigned, const char*>;
+using entry = std::pair<uint32_t, const char*>;
 
 class MidiInfo
 {
