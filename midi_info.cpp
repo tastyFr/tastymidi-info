@@ -3,7 +3,6 @@
 #include "midi/MidiEvent.h"
 #include <algorithm>
 #include <array>
-#include <cstdint>
 
 MidiInfo::MidiInfo() noexcept
     : m_emptyTracksCount(0), m_totalNotes(0), m_tpqn(0), m_bpms({})
